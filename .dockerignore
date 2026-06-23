@@ -1,0 +1,10 @@
+.git
+.gitignore
+__pycache__
+*.pyc
+.pytest_cache
+backend/uploads/*
+backend/temp/*
+README.md
+*.md
+.DS_Store

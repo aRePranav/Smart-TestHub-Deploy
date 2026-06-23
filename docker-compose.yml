@@ -1,0 +1,44 @@
+version: "3.9"
+
+# =====================================================================
+# Automated Test Execution Platform — full stack deployment
+#
+# Two images are built:
+#   1. `app`     - the FastAPI server (Dockerfile)
+#   2. (sandbox) - test-platform-sandbox:latest, built from
+#                  sandbox.Dockerfile, used PER EXECUTION by the app
+#                  container via the mounted Docker socket below.
+#
+# IMPORTANT: mounting /var/run/docker.sock gives the app container the
+# ability to start sibling containers on the host ("Docker-out-of-
+# Docker"). This is what lets execution containers be properly
+# sandboxed (network-disabled, resource-limited, non-root) rather than
+# nested inside the app's own less-restricted container. The
+# trade-off is that the app container itself must be trusted - it is
+# NOT running arbitrary user code directly, only orchestrating it.
+# =====================================================================
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: test-platform-app:latest
+    container_name: test-platform-app
+    ports:
+      - "8000:8000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - report-data:/app/backend/uploads/reports
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+volumes:
+  report-data:

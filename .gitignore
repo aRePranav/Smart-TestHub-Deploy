@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+.venv/
+venv/
+env/
+
+# Test/coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Platform runtime artifacts (never commit user uploads/reports)
+backend/uploads/*
+!backend/uploads/.gitkeep
+backend/temp/*
+!backend/temp/.gitkeep
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
+*.swp
+
+# Docker
+docker-compose.override.yml
