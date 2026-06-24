@@ -33,7 +33,7 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(
-    title=title="Smart-TestHub",
+    title="Smart-TestHub",
     description=(
         "Production-grade platform for automated execution of uploaded "
         "software test case files (Python, C, Java) with sandboxed "
