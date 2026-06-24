@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import logging
 from contextlib import asynccontextmanager
+from turtle import title
 
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
@@ -25,14 +26,14 @@ logger = logging.getLogger(__name__)
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    logger.info("Automated Test Execution Platform starting up.")
+    logger.info("Smart-TestHub starting up.")
     logger.info("Upload dir: %s | Temp dir: %s", settings.UPLOAD_DIR, settings.TEMP_DIR)
     yield
-    logger.info("Automated Test Execution Platform shutting down.")
+    logger.info("Smart-TestHub shutting down.")
 
 
 app = FastAPI(
-    title="Automated Test Execution Platform",
+    title=title="Smart-TestHub",
     description=(
         "Production-grade platform for automated execution of uploaded "
         "software test case files (Python, C, Java) with sandboxed "
