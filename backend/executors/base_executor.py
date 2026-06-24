@@ -84,7 +84,7 @@ class BaseExecutor(ABC):
         sandbox if Docker is available, else via the local fallback.
         """
         commands = self.build_commands(work_dir, filename)
-        use_docker = docker_available()
+        use_docker = False
 
         if not use_docker:
             logger.warning(
