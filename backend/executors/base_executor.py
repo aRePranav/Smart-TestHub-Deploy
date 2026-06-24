@@ -31,6 +31,7 @@ import subprocess
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
 from pathlib import Path
+from unittest import result
 
 from backend.core.config import settings
 
@@ -118,6 +119,9 @@ class BaseExecutor(ABC):
                     error_message=f"Execution timed out during '{stage_name}' stage "
                     f"(limit: {timeout}s).",
                 )
+
+            print("STDOUT:", result.stdout)
+            print("STDERR:", result.stderr) 
 
             if result.exit_code != 0:
                 return ExecutionResult(
