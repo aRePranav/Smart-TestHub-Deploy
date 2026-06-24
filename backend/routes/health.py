@@ -22,6 +22,6 @@ PLATFORM_VERSION = "1.0.0"
 async def health_check() -> HealthResponse:
     return HealthResponse(
         status="ok",
-        docker_sandbox_available=docker_available(),
+        docker_sandbox_available=False,
         version=PLATFORM_VERSION,
     )
