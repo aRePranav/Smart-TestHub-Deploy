@@ -147,11 +147,8 @@
   // ------------------------------------------------------------------
   // Drag & drop wiring
   // ------------------------------------------------------------------
-  dropzone.addEventListener("click", (e) => {
-    // Avoid double-trigger when clicking the native label/input itself.
-    if (e.target !== fileInput) {
-      fileInput.click();
-    }
+  dropzone.addEventListener("click", () => {
+    fileInput.click();
   });
 
   dropzone.addEventListener("keydown", (e) => {
