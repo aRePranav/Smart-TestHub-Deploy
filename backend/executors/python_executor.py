@@ -29,9 +29,9 @@ class PythonExecutor(BaseExecutor):
     language_name = "python"
 
     def build_commands(self, work_dir: Path, filename: str) -> list[tuple[str, list[str]]]:
-        return [
-            (
-                "test",
-                ["python3", "-m", "pytest", filename, "-q", "--no-header"],
-            )
-        ]
+    return [
+        (
+            "execute",
+            ["python3", filename],
+        )
+    ]
