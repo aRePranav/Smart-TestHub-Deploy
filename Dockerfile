@@ -22,6 +22,9 @@ RUN apt-get update && \
         gnupg \
         lsb-release \
         gcc \
+        g++ \
+        libc6-dev \
+        build-essential \
         default-jdk && \
     install -m 0755 -d /etc/apt/keyrings && \
     curl -fsSL https://download.docker.com/linux/debian/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg && \
